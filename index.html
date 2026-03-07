@@ -415,6 +415,28 @@ footer{
   section{padding:64px 5%}
   #hero{padding:90px 5% 50px}
 }
+
+.typeform-wrap{display:flex;align-items:center;justify-content:center;padding:20px 0}
+.typeform-card{
+  background:var(--lt);border-radius:var(--r2);
+  border:1.5px solid rgba(0,0,0,.07);
+  padding:48px 40px;text-align:center;
+  box-shadow:0 4px 32px rgba(0,0,0,.06);
+  max-width:480px;width:100%;
+}
+.typeform-icon{font-size:48px;margin-bottom:20px}
+.typeform-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--blk);margin-bottom:12px}
+.typeform-desc{font-size:15px;color:var(--mid);line-height:1.7;margin-bottom:32px}
+.btn-typeform{
+  display:inline-block;
+  background:var(--y);color:var(--blk);
+  padding:16px 36px;border-radius:100px;
+  font-weight:700;font-size:15px;text-decoration:none;
+  box-shadow:0 4px 20px rgba(247,209,23,.4);
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.btn-typeform:hover{background:var(--yd);transform:translateY(-2px);box-shadow:0 8px 30px rgba(247,209,23,.5)}
+.typeform-note{font-size:12px;color:#aaa;margin-top:16px}
 </style>
 </head>
 <body>
@@ -760,44 +782,17 @@ footer{
         </div>
       </div>
     </div>
-    <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
-      <input type="hidden" name="form-name" value="contact">
-      <p style="display:none"><input name="bot-field"></p>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Prénom *</label>
-          <input type="text" name="prenom" placeholder="Votre prénom" required>
-        </div>
-        <div class="form-group">
-          <label>Nom *</label>
-          <input type="text" name="nom" placeholder="Votre nom" required>
-        </div>
+    <div class="typeform-wrap">
+      <div class="typeform-card">
+        <div class="typeform-icon">✉️</div>
+        <h3 class="typeform-title">Prêt à nous contacter ?</h3>
+        <p class="typeform-desc">Notre formulaire s'ouvre en quelques secondes. Réponse garantie sous 24h.</p>
+        <a href="https://form.typeform.com/to/f7eG0jgI" target="_blank" class="btn-typeform">
+          Remplir le formulaire →
+        </a>
+        <p class="typeform-note">Ouverture dans un nouvel onglet · 2 minutes maximum</p>
       </div>
-      <div class="form-group">
-        <label>Entreprise / Site *</label>
-        <input type="text" name="entreprise" placeholder="Ex : Usine Michelin — Site de Clermont" required>
-      </div>
-      <div class="form-group">
-        <label>Email professionnel *</label>
-        <input type="email" name="email" placeholder="votre@email.com" required>
-      </div>
-      <div class="form-group">
-        <label>Objet de votre demande</label>
-        <select name="objet">
-          <option value="">Sélectionner...</option>
-          <option>Demande de présentation</option>
-          <option>Renseignements sur le service</option>
-          <option>Demande de devis</option>
-          <option>Partenariat fournisseur</option>
-          <option>Autre</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Votre message</label>
-        <textarea name="message" placeholder="Décrivez votre site, vos besoins, vos questions..."></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Envoyer le message →</button>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -842,40 +837,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Form submit — Netlify Forms
-function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('.btn-submit');
-  btn.textContent = 'Envoi en cours...';
-  btn.disabled = true;
 
-  const data = new FormData(form);
-  fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(data).toString()
-  })
-  .then(() => {
-    btn.textContent = '✅ Message envoyé !';
-    btn.style.background = '#22c55e';
-    form.reset();
-    setTimeout(() => {
-      btn.textContent = 'Envoyer le message →';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 4000);
-  })
-  .catch(() => {
-    btn.textContent = '❌ Erreur — réessayez';
-    btn.style.background = '#ef4444';
-    btn.disabled = false;
-    setTimeout(() => {
-      btn.textContent = 'Envoyer le message →';
-      btn.style.background = '';
-    }, 3000);
-  });
-}
 </script>
 </body>
 </html>

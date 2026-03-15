@@ -99,7 +99,46 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.09)}
   animation:fadeUp .6s .35s both;
 }
 .hero-p strong{color:var(--y)}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .6s .5s both}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .6s .5s both;align-items:center}
+.btn-primary{
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--y);color:var(--blk);
+  padding:16px 32px;border-radius:100px;
+  font-weight:800;font-size:14.5px;text-decoration:none;
+  letter-spacing:.3px;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(247,209,23,.45),0 0 0 0 rgba(247,209,23,.3);
+}
+.btn-primary::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.25) 60%,transparent 70%);
+  transform:translateX(-100%);transition:transform .5s ease;
+}
+.btn-primary:hover::after{transform:translateX(120%)}
+.btn-primary:hover{background:var(--yd);transform:translateY(-2px);box-shadow:0 8px 36px rgba(247,209,23,.55)}
+.btn-primary .arrow{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;background:rgba(0,0,0,.12);border-radius:50%;
+  font-size:13px;transition:transform .2s;
+}
+.btn-primary:hover .arrow{transform:translateX(3px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.9);
+  padding:16px 32px;border-radius:100px;
+  font-weight:600;font-size:14.5px;text-decoration:none;
+  border:1.5px solid rgba(255,255,255,.2);
+  backdrop-filter:blur(8px);
+  transition:background .2s,border-color .2s,transform .15s;
+}
+.btn-ghost:hover{
+  background:rgba(255,255,255,.15);
+  border-color:rgba(255,255,255,.45);
+  transform:translateY(-2px);
+  color:#fff;
+}
 .badge{
   display:inline-flex;align-items:center;gap:7px;
   background:rgba(247,209,23,.15);border:1.5px solid rgba(247,209,23,.4);
@@ -483,9 +522,9 @@ footer{
     <div class="hero-left">
       <div class="badge">🟡 Nouveau service sur votre site</div>
       <h1 class="hero-h1">
-        MANGER<br>
-        <span class="yl">FRAIS,</span><br>
-        N'IMPORTE<br>QUAND.
+        VOS ÉQUIPES<br>
+        <span class="yl">MÉRITENT</span><br>
+        MIEUX QU'UN<br>DISTRIBUTEUR.
       </h1>
       <p class="hero-p">
         Food Locker installe des casiers réfrigérés connectés directement sur votre site.
@@ -493,8 +532,8 @@ footer{
         même la nuit. Portés par des collaborateurs de votre entreprise.
       </p>
       <div class="hero-btns">
-        <a href="#concept" class="btn-primary">Découvrir le projet →</a>
-        <a href="#contact" class="btn-ghost" style="color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.25)">Nous contacter</a>
+        <a href="#concept" class="btn-primary">Découvrir le projet <span class="arrow">→</span></a>
+        <a href="#contact" class="btn-ghost">💬 Nous contacter</a>
       </div>
       <div class="kpi-row">
         <div class="kpi"><div class="kpi-val">24h/7j</div><div class="kpi-label">Disponibilité</div></div>
